@@ -1,0 +1,23 @@
+{
+  "name": "openlens-kube-object-event-status",
+  "version": "6.1.1",
+  "description": "Adds kube object status from events into OpenLens",
+  "renderer": "dist/renderer.js",
+  "engines": {
+    "node": "^16.14.2",
+    "lens": "^6.3.0"
+  },
+  "scripts": {
+    "build": "npx webpack && npm pack --pack-destination $@",
+    "dev": "npx webpack -- --watch",
+    "test": "echo NO TESTS"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "devDependencies": {
+    "@k8slens/extensions": "^6.3.0",
+    "ts-loader": "^9.4.2",
+    "webpack-cli": "^5.0.1"
+  }
+}

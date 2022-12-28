@@ -1,0 +1,24 @@
+{
+  "name": "openlens-node-menu",
+  "version": "6.1.0",
+  "description": "OpenLens node menu",
+  "renderer": "dist/renderer.js",
+  "engines": {
+    "node": "^16.14.2",
+    "lens": "^6.3.0"
+  },
+  "scripts": {
+    "build": "npx webpack && npm pack --pack-destination $@",
+    "dev": "npx webpack -- --watch",
+    "test": "npx jest --passWithNoTests --env=jsdom src $@"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "devDependencies": {
+    "@k8slens/extensions": "^6.3.0",
+    "@types/react": "^17.0.52",
+    "ts-loader": "^9.4.2",
+    "webpack-cli": "^5.0.1"
+  }
+}
