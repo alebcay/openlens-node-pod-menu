@@ -8,9 +8,9 @@
     "lens": "^6.3.0"
   },
   "scripts": {
-    "build": "npx webpack && npm pack --pack-destination $@",
+    "build": "npx webpack && npm pack --pack-destination ",
     "dev": "npx webpack -- --watch",
-    "test": "npx jest --passWithNoTests --env=jsdom src $@",
+    "test": "npx jest --passWithNoTests --env=jsdom src ",
     "clean": "rm -rf dist/ && rm *.tgz"
   },
   "files": [

@@ -6,10 +6,10 @@ install-deps:
 
 build: install-deps
 	mkdir dist
-	npm run --prefix src/kube-object-event-status build ${PWD}/dist
-	npm run --prefix src/metrics-cluster-feature build ${PWD}/dist
-	npm run --prefix src/node-menu build ${PWD}/dist
-	npm run --prefix src/pod-menu build ${PWD}/dist
+	npm run --prefix src/kube-object-event-status build -- $(CURDIR)/dist
+	npm run --prefix src/metrics-cluster-feature build -- $(CURDIR)/dist
+	npm run --prefix src/node-menu build -- $(CURDIR)/dist
+	npm run --prefix src/pod-menu build -- $(CURDIR)/dist
 
 clean:
 	rm -rf dist \
