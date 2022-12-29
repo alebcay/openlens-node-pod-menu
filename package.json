@@ -2,13 +2,19 @@
   "name": "@alebcay/openlens-node-pod-menu",
   "version": "0.1.0",
   "description": "Node and pod menus for OpenLens",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alebcay/openlens-node-pod-menu.git",
+    "directory": "."
+  },
   "renderer": "dist/renderer.js",
   "engines": {
     "node": "^16.14.2",
     "lens": "^6.3.0"
   },
   "scripts": {
-    "build": "npx webpack && npm pack --pack-destination ",
+    "build": "npm run clean && npx webpack",
+    "clean": "rm -rf ./dist",
     "dev": "npx webpack -- --watch",
     "test": "npx jest --passWithNoTests --env=jsdom src "
   },
@@ -20,5 +26,15 @@
     "@types/react": "^17.0.52",
     "ts-loader": "^9.4.2",
     "webpack-cli": "^5.0.1"
-  }
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "pod",
+    "menu",
+    "extension",
+    "k8slens",
+    "lens",
+    "openlens"
+  ]
 }

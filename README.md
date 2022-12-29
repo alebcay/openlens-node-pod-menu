@@ -12,10 +12,12 @@ From the root of this repository:
 # Node but I haven't tested it.
 nvm install 16.14.2
 
+npm ci
 npm run build
+npm pack
 ```
 
-The tarball for the extension will be placed in the current directory. In OpenLens, navigate to the Extensions list and provide the path to the tarball to be loaded, or drag and drop the extension tarball into the OpenLens window. After loading for a moment, the extension should appear in the list of enabled extensions. Verify that the features provided by the desired extensions are working as expected.
+The tarball for the extension will be placed in the current directory. In OpenLens, navigate to the Extensions list and provide the path to the tarball to be loaded, or drag and drop the extension tarball into the OpenLens window. After loading for a moment, the extension should appear in the list of enabled extensions.
 
 # License
 
