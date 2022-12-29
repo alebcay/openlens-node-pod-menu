@@ -1,7 +1,7 @@
 {
-  "name": "openlens-pod-menu",
-  "version": "6.1.0",
-  "description": "OpenLens pod menu",
+  "name": "@alebcay/openlens-node-pod-menu",
+  "version": "0.1.0",
+  "description": "Node and pod menus for OpenLens",
   "renderer": "dist/renderer.js",
   "engines": {
     "node": "^16.14.2",

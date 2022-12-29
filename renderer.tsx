@@ -4,6 +4,8 @@
  */
 
 import { Renderer } from "@k8slens/extensions";
+import type { NodeMenuProps } from "./src/node-menu";
+import { NodeMenu } from "./src/node-menu";
 import type { PodAttachMenuProps } from "./src/attach-menu";
 import { PodAttachMenu } from "./src/attach-menu";
 import type { PodShellMenuProps } from "./src/shell-menu";
@@ -14,6 +16,13 @@ import React from "react";
 
 export default class PodMenuRendererExtension extends Renderer.LensExtension {
   kubeObjectMenuItems = [
+    {
+      kind: "Node",
+      apiVersions: ["v1"],
+      components: {
+        MenuItem: (props: NodeMenuProps) => <NodeMenu {...props} />,
+      },
+    },
     {
       kind: "Pod",
       apiVersions: ["v1"],
