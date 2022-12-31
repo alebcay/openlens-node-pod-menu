@@ -26,10 +26,7 @@ const {
   App,
 } = Common;
 
-export interface PodAttachMenuProps extends Renderer.Component.KubeObjectMenuProps<Pod> {
-}
-
-export class PodAttachMenu extends React.Component<PodAttachMenuProps> {
+export class PodAttachMenu extends React.Component<Renderer.Component.KubeObjectMenuProps<Pod>> {
   async attachToPod(container?: string) {
     const { object: pod } = this.props;
 

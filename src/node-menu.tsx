@@ -22,11 +22,7 @@ const {
   App,
 } = Common;
 
-
-export interface NodeMenuProps extends Renderer.Component.KubeObjectMenuProps<Node> {
-}
-
-export function NodeMenu(props: NodeMenuProps) {
+export function NodeMenu(props: Renderer.Component.KubeObjectMenuProps<Node>) {
   const { object: node, toolbar } = props;
 
   if (!node) {

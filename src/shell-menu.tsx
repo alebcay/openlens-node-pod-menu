@@ -26,10 +26,7 @@ const {
   App,
 } = Common;
 
-export interface PodShellMenuProps extends Renderer.Component.KubeObjectMenuProps<Pod> {
-}
-
-export class PodShellMenu extends React.Component<PodShellMenuProps> {
+export class PodShellMenu extends React.Component<Renderer.Component.KubeObjectMenuProps<Pod>> {
   async execShell(container?: string) {
     const { object: pod } = this.props;
 
@@ -82,7 +79,7 @@ export class PodShellMenu extends React.Component<PodShellMenuProps> {
         <Icon
           svg="ssh"
           interactive={toolbar}
-          tooltip={toolbar && "Pod Shell"} 
+          tooltip={toolbar && "Pod Shell"}
         />
         <span className="title">Shell</span>
         {containers.length > 1 && (

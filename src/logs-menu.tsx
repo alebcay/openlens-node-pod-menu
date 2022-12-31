@@ -23,10 +23,7 @@ const {
   Util,
 } = Common;
 
-export interface PodLogsMenuProps extends Renderer.Component.KubeObjectMenuProps<Pod> {
-}
-
-export class PodLogsMenu extends React.Component<PodLogsMenuProps> {
+export class PodLogsMenu extends React.Component<Renderer.Component.KubeObjectMenuProps<Pod>> {
   showLogs(container: IPodContainer) {
     Navigation.hideDetails();
     const pod = this.props.object;

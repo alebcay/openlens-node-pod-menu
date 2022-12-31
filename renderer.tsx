@@ -4,13 +4,9 @@
  */
 
 import { Renderer } from "@k8slens/extensions";
-import type { NodeMenuProps } from "./src/node-menu";
 import { NodeMenu } from "./src/node-menu";
-import type { PodAttachMenuProps } from "./src/attach-menu";
 import { PodAttachMenu } from "./src/attach-menu";
-import type { PodShellMenuProps } from "./src/shell-menu";
 import { PodShellMenu } from "./src/shell-menu";
-import type { PodLogsMenuProps } from "./src/logs-menu";
 import { PodLogsMenu } from "./src/logs-menu";
 import React from "react";
 
@@ -20,28 +16,28 @@ export default class PodMenuRendererExtension extends Renderer.LensExtension {
       kind: "Node",
       apiVersions: ["v1"],
       components: {
-        MenuItem: (props: NodeMenuProps) => <NodeMenu {...props} />,
+        MenuItem: (props: Renderer.Component.KubeObjectMenuProps<Renderer.K8sApi.Node>) => <NodeMenu {...props} />,
       },
     },
     {
       kind: "Pod",
       apiVersions: ["v1"],
       components: {
-        MenuItem: (props: PodAttachMenuProps) => <PodAttachMenu {...props} />,
+        MenuItem: (props: Renderer.Component.KubeObjectMenuProps<Renderer.K8sApi.Pod>) => <PodAttachMenu {...props} />,
       },
     },
     {
       kind: "Pod",
       apiVersions: ["v1"],
       components: {
-        MenuItem: (props: PodShellMenuProps) => <PodShellMenu {...props} />,
+        MenuItem: (props: Renderer.Component.KubeObjectMenuProps<Renderer.K8sApi.Pod>) => <PodShellMenu {...props} />,
       },
     },
     {
       kind: "Pod",
       apiVersions: ["v1"],
       components: {
-        MenuItem: (props: PodLogsMenuProps) => <PodLogsMenu {...props} />,
+        MenuItem: (props: Renderer.Component.KubeObjectMenuProps<Renderer.K8sApi.Pod>) => <PodLogsMenu {...props} />,
       },
     },
   ];
