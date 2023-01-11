@@ -57,7 +57,7 @@ jobs:
       - name: Restore extension pack
         uses: actions/cache/restore@v3
         with:
-          path: extension
+          path: out
           key: pack-${{ github.run_id }}
 
       - name: Run integration test

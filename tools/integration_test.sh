@@ -8,6 +8,7 @@ DIR=$(mktemp -d)
 git clone https://github.com/lensapp/lens ${DIR}/lens
 [ ! -z "${LENS_REF}" ] && git -C ${DIR}/lens checkout ${LENS_REF}
 cp tools/extensions.tests.ts ${DIR}/lens/integration/__tests__/extensions.tests.ts
+TARGET_FILE="${DIR}/lens/package.json" node tools/remove_extra_lens_targets.js
 
 pushd ${DIR}/lens
     make build
