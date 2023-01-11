@@ -6,18 +6,28 @@ on:
     paths-ignore:
       # Do not run the pipeline if only Markdown files changed
       - '**.md'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up node
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish --access public
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build extension
+        run: npm run build
+
+      - name: Publish extension
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
