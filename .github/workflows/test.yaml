@@ -1,0 +1,65 @@
+name: test
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build extension
+        run: npm run build
+
+      - name: Pack extension
+        run: mkdir out && npm pack --pack-destination out
+
+      - name: Save extension pack
+        uses: actions/cache/save@v3
+        with:
+          path: out
+          key: pack-${{ github.run_id }}
+
+  integration-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - lens-ref: "" # HEAD
+            node-version: 16
+          - lens-ref: v6.3.0
+            node-version: 16
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up minikube
+        uses: medyagh/setup-minikube@latest
+
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Restore extension pack
+        uses: actions/cache/restore@v3
+        with:
+          path: extension
+          key: pack-${{ github.run_id }}
+
+      - name: Run integration test
+        run: |-
+          EXTENSION_PATH="realpath $(ls -1 out)" LENS_REF="${{ matrix.lens-ref }}" xvfb-run --auto-servernum --server-args='-screen 0, 1600x900x24' tools/integration_test.sh
