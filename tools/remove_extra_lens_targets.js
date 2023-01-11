@@ -1,3 +1,5 @@
+/* eslint-env es6 */
+
 const fs = require('fs');
 var packagejson = require(process.env.TARGET_FILE);
 packagejson.build.linux.target = []
