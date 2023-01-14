@@ -38,7 +38,7 @@ jobs:
           path: out
           key: pack-${{ github.run_id }}
 
-  integration-tests:
+  integration:
     needs: build
     runs-on: ubuntu-latest
     strategy:
