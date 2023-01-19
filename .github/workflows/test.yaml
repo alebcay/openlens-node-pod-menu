@@ -46,6 +46,8 @@ jobs:
         include:
           - lens-ref: HEAD
             node-version: 16
+          - lens-ref: v6.4.0-alpha.4
+            node-version: 16
           - lens-ref: v6.4.0-alpha.3
             node-version: 16
           - lens-ref: v6.4.0-alpha.2
