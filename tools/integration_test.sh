@@ -7,12 +7,17 @@ set -exo pipefail
 DIR=$(mktemp -d)
 git clone https://github.com/lensapp/lens ${DIR}/lens
 [ ! -z "${LENS_REF}" ] && git -C ${DIR}/lens checkout ${LENS_REF}
-cp tools/extensions.tests.ts ${DIR}/lens/integration/__tests__/extensions.tests.ts
-TARGET_FILE="${DIR}/lens/package.json" node tools/remove_extra_lens_targets.js
+cp tools/extensions.tests.ts ${DIR}/lens/packages/open-lens/integration/__tests__/extensions.tests.ts
+TARGET_FILE="${DIR}/lens/packages/open-lens/package.json" node tools/remove_extra_lens_targets.js
 
 pushd ${DIR}/lens
-    make build
-    npx jest -- integration/__tests__/extensions.tests.ts
+    yarn install --frozen-lockfile
+    yarn run build:app
+
+    # If left present, the snap package will be mistaken for an obsolete Jest snapshot
+    rm packages/open-lens/dist/*.snap
+
+    cd packages/open-lens && npx jest -- integration/__tests__/extensions.tests.ts
 popd
 
 rm -rf ${DIR}

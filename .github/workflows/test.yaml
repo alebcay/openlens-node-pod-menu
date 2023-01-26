@@ -46,16 +46,16 @@ jobs:
         include:
           - lens-ref: HEAD
             node-version: 16
+            script: tools/integration_test.sh
+          - lens-ref: v6.4.0-beta.5
+            node-version: 16
+            script: tools/integration_test.sh
           - lens-ref: v6.4.0-alpha.4
             node-version: 16
-          - lens-ref: v6.4.0-alpha.3
-            node-version: 16
-          - lens-ref: v6.4.0-alpha.2
-            node-version: 16
-          - lens-ref: v6.4.0-alpha.1
-            node-version: 16
+            script: tools/integration_test_pre6.4.0.sh
           - lens-ref: v6.3.0
             node-version: 16
+            script: tools/integration_test_pre6.4.0.sh
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -78,4 +78,4 @@ jobs:
 
       - name: Run integration test
         run: |-
-          EXTENSION_PATH="$(realpath out/$(ls -1 out))" LENS_REF="${{ matrix.lens-ref }}" xvfb-run --auto-servernum --server-args='-screen 0, 1600x900x24' tools/integration_test.sh
+          EXTENSION_PATH="$(realpath out/$(ls -1 out))" LENS_REF="${{ matrix.lens-ref }}" xvfb-run --auto-servernum --server-args='-screen 0, 1600x900x24' ${{ matrix.script }}
