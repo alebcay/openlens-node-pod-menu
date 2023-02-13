@@ -24,7 +24,7 @@
   ],
   "devDependencies": {
     "@k8slens/extensions": "^6.3.0",
-    "@types/react": "^17.0.52",
+    "@types/react": "^18.0.28",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "eslint": "^8.31.0",
     "ts-loader": "^9.4.2",
