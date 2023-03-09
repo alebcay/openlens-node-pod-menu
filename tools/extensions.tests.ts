@@ -66,6 +66,11 @@ describe("extensions page tests", () => {
     // Navigate to pods view
     await frame.click('div[data-testid=sidebar-item-pods]');
 
+    // Navigate to kube-system namespace
+    await frame.click('div[data-testid=namespace-select-filter]');
+    await frame.waitForSelector('.NamespaceSelectFilterMenu');
+    await frame.click('.Select__option >> text=kube-system');
+
     // Click on etcd-minikube pod
     await frame.waitForSelector('text=etcd-minikube');
     await frame.click('text=etcd-minikube');
