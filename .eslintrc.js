@@ -36,7 +36,8 @@ module.exports =  {
     },
     {
       files: [
-        "./*.js"
+        "./*.js",
+        "./tools/*.js"
       ],
       extends: [
         'eslint:recommended',
@@ -45,7 +46,7 @@ module.exports =  {
         node: true
       },
       parserOptions:  {
-        ecmaVersion: 2018,
+        ecmaVersion: 'latest',
         sourceType: 'module',
       },
       rules: {
