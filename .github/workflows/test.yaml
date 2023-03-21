@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate-test-matrix.outputs.matrix }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -38,18 +40,20 @@ jobs:
           path: out
           key: pack-${{ github.run_id }}
 
+      - name: Generate test matrix
+        id: generate-test-matrix
+        env:
+          TEST_CONSTRAINTS: |
+            ["~6.4.0", "~6.3.0"]
+        run: |
+          echo "matrix=$(node tools/generate_test_matrix.js)" >> $GITHUB_OUTPUT
+
   integration:
     needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          - lens-ref: HEAD
-            node-version: 16
-          - lens-ref: v6.4.7
-            node-version: 16
-          - lens-ref: v6.3.0
-            node-version: 16
+        include: ${{ fromJSON(needs.build.outputs.matrix) }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
