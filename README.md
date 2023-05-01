@@ -4,7 +4,7 @@ This OpenLens extension adds back the node and pod menu functionality that was r
 
 # Installing this extension
 
-In OpenLens, navigate to the Extensions list. In the text box, enter the name of this plugin:
+In OpenLens, navigate to Menu > Extensions. In the text box, enter the name of this plugin:
 
 ```
 @alebcay/openlens-node-pod-menu
