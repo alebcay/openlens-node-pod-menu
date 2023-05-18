@@ -86,7 +86,9 @@ async function getTags() {
 
 (async function() {
   let testConstraints = JSON.parse(process.env.TEST_CONSTRAINTS);
-  testConstraints.unshift('HEAD');
+  if (process.env.TEST_HEAD_REF === '1') {
+    testConstraints.unshift('HEAD');
+  }
   let tags = await getTags();
 
   let matrix = await Promise.all(testConstraints.map((constraint) => {
