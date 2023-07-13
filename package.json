@@ -1,6 +1,6 @@
 {
   "name": "@alebcay/openlens-node-pod-menu",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Node and pod menus for OpenLens",
   "repository": {
     "type": "git",
